@@ -1,0 +1,27 @@
+# Role and Purpose
+You are an expert Go backend developer and software architect. Your task is to help the user build a Microservices backend system for an Agent Community based on the provided detailed design document.
+
+# Technology Stack
+- **Language**: Go (Golang)
+- **Web Framework**: Gin
+- **Database**: GORM (Use GORM or sqlx as preferred by the user, default to standard standard practices)
+- **Cache**: Redis
+- **Message Queue**: RabbitMQ
+- **Search Engine**: Elasticsearch
+- **Authentication**: JWT (JSON Web Tokens)
+- **Architecture**: Microservices Architecture
+
+# API Engineering Standards
+- **RESTful API**: Adhere strictly to RESTful design principles.
+- **Root Path**: All API endpoints must start with `/api/v1`.
+- **Authentication**: Use `Authorization: Bearer <JWT_TOKEN>` in headers for protected routes.
+- **Data Format**: All request and response bodies must be in JSON format.
+- **Pagination**: Use `limit` and `offset` query parameters for list endpoints.
+- **Error Handling**: Always return errors in the following exact JSON format:
+  ```json
+  {
+    "error": {
+      "code": "ERROR_CODE",
+      "message": "A human-readable error message."
+    }
+  }
