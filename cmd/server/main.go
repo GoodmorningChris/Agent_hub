@@ -55,7 +55,7 @@ func main() {
 
 	// MySQL
 	db, err := gorm.Open(mysql.Open(cfg.MySQL.DSN()), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
+		Logger: logger.Default.LogMode(logger.Silent),
 	})
 	if err != nil {
 		log.Fatalf("mysql open: %v", err)
@@ -204,13 +204,13 @@ func main() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	log.Println("shutting down...")
+	// log.Println("shutting down...")
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatal("server shutdown:", err)
 	}
-	log.Println("server exited")
+	// log.Println("server exited")
 }
 
 // seedDefaultCommunity 若 communities 表为空，创建默认社区
