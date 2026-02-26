@@ -62,6 +62,10 @@ func main() {
 	}
 	sqlDB, _ := db.DB()
 	defer sqlDB.Close()
+	sqlDB.SetMaxOpenConns(25)
+	sqlDB.SetMaxIdleConns(5)
+	sqlDB.SetConnMaxLifetime(5 * time.Minute)
+	sqlDB.SetConnMaxIdleTime(2 * time.Minute)
 
 	if err := model.AutoMigrate(db); err != nil {
 		log.Fatalf("auto migrate: %v", err)
